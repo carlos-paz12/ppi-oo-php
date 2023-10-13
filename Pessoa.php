@@ -18,7 +18,7 @@
 class Pessoa
 {
     private $nome;
-    private string $nascimento;
+    private $nascimento;
     private $cidade;
     private $genero;
 
@@ -74,7 +74,7 @@ class Pessoa
     }
 
     /*
-     * Para funcionar, a data de nascimento precisa
+     * Para funcionar, o atributo 'nascimento' deve
      * estar no formato dd/mm/yyyy
      *
      * Exemplos:
@@ -84,10 +84,14 @@ class Pessoa
      */
     public function calcularIdade()
     {
+        $nascimentoEmTempo = strtotime($this->nascimento);
+        $nascimentoEmData = date('d/m/Y', $nascimentoEmTempo);
+        
         $dataAtual = new DateTime(date('d/m/Y'));
-        $dataNascimento = new DateTime(date('d/m/Y', strtotime($this->nascimento)));
+        $dataNascimento = new DateTime($nascimentoEmData);
 
         $idade = $dataAtual->diff($dataNascimento)->format('%Y');
+        
         return $idade;
     }
 
