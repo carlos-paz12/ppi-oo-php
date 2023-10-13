@@ -10,11 +10,15 @@
  *
  * No método para atribuir o nome da classe Pessoa, faça uma
  * validação para só aceitar nomes com pelo menos 3 caracteres
+ *
+ *
+ * Crie um método adicional na classe Pessoa, que calcule e
+ * retorne a idade atual com base na data de nascimento
  */
 class Pessoa
 {
     private $nome;
-    private $nascimento;
+    private string $nascimento;
     private $cidade;
     private $genero;
 
@@ -67,6 +71,24 @@ class Pessoa
     {
         $this->genero = $genero;
         return $this;
+    }
+
+    /*
+     * Para funcionar, a data de nascimento precisa
+     * estar no formato dd/mm/yyyy
+     *
+     * Exemplos:
+     * 21/04/2004
+     * 18/14/1999
+     * 23/09/2004
+     */
+    public function calcularIdade()
+    {
+        $dataAtual = new DateTime(date('d/m/Y'));
+        $dataNascimento = new DateTime(date('d/m/Y', strtotime($this->nascimento)));
+
+        $idade = $dataAtual->diff($dataNascimento)->format('%Y');
+        return $idade;
     }
 
 }
