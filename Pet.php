@@ -6,6 +6,10 @@
  * 
  * 
  * Implemente o conceito de encapsulamento na classe.
+ *
+ *
+ * No método para atribuir o nome da classe Pet, faça uma
+ * validação para só aceitar nomes com pelo menos 2 caracteres
  */
 class Pet
 { 
@@ -22,8 +26,15 @@ class Pet
 
     public function setNome($nome)
     {
-        $this->nome = $nome;
-        return $this;
+        if (strlen($nome) >= 2)
+        {
+            $this->nome = $nome;
+            return $this;
+        }
+        else
+        {
+            echo "Nome inválido";
+        }
     }
 
     public function getEspecie()
